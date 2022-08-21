@@ -1,0 +1,9 @@
+<button (click)="get401Error()" class="btn btn-primary mr-1">test authorize</button>
+<button (click)="get404NotFound()" class="btn btn-primary mr-1">test not found</button>
+<button (click)="get500ServerError()" class="btn btn-primary mr-1">test server error</button>
+<button (click)="get400BadRequest()" class="btn btn-primary mr-1">test bad request</button>
+<button (click)="get400ValidationError()" class="btn btn-primary mr-1">test validation</button>
+
+<ul *ngIf="validationErrors.length > 0" class="py-3">
+    <li *ngFor="let error of validationErrors" class="text-danger">{{ error }}</li>
+</ul>

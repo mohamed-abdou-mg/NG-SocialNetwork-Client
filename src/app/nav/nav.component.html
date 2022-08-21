@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">Social Network</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
+            </li>
+            <ng-container *ngIf="authService.currentUser$ | async">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+              </li>
+            </ng-container>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown" *ngIf="(authService.currentUser$ | async) as user" dropdown>
+              <a class="nav-link dropdown-toggle" dropdownToggle role="button" data-toggle="dropdown" aria-expanded="false">
+                Hey, {{ user.username  | titlecase}}
+              </a>
+              <div class="dropdown-menu" *dropdownMenu>
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="Logout()">Logout</a>
+              </div>
+            </li>
+            <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="Login()" *ngIf="(authService.currentUser$ | async) === null">
+              <input type="text" name="username" [(ngModel)]="loginModel.Username" placeholder="Username" class="form-control mr-2">
+              <input type="password" name="password" [(ngModel)]="loginModel.Password" placeholder="Password" class="form-control mr-2">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+            </form>
+          </ul>
+        </div>
+    </div>
+  </nav>

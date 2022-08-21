@@ -1,0 +1,9 @@
+<div class="home mt-5 text-center" *ngIf="!registerMode">
+    <h1>Find your match</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. hic illo sit sequi, maiores ducimus!</p>
+    <button (click)="showRegister()" class="btn btn-primary mr-2">Register</button>
+    <button class="btn btn-secondary">Learn more</button>
+</div>
+<div class="register" *ngIf="registerMode">
+    <app-register (registerModeEmitted) = "registerModeCanceled($event)"></app-register>
+</div>
