@@ -1,0 +1,55 @@
+<div class="row my-5" *ngIf="authUser">
+    <div class="col-md-4">
+        <div class="card">
+            <img [src]="authUser.photoUrl" class="card-img-top" [alt]="authUser.username">
+            <div class="card-body">
+                <h5 class="card-title">{{ authUser.username | uppercase }}</h5>
+                <p><strong>Gender: </strong> {{ authUser.gender }}</p>
+                <p><strong>Location: </strong> {{ authUser.city }}, {{ authUser.country }}</p>
+                <p><strong>Age: </strong>{{ authUser.age }} years</p>
+                <p><strong>Last Active: </strong> {{ authUser.lastActive }}</p>
+                <p><strong>Member since: </strong> {{ authUser.created }}</p>
+                <button form="editForm" [disabled]="!editForm.dirty" type="submit" class="btn btn-success btn-block">Save Changes</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-8">
+
+        <alert *ngIf="editForm.dirty" type="danger" dismissible="true"><strong>Information:</strong> You have made changes. Any unsaved changes will be lost.</alert>
+        
+        <tabset [justified]="true">
+            <tab heading="Edit Profile" class="py-3">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="editFormSubmitted()">
+                    <div class="form-group">
+                        <label for="introduction">Introduction</label>
+                        <textarea [(ngModel)]="authUser.introduction" class="form-control" name="introduction" id="introduction" cols="30" rows="6"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="lookingFor">Looking For</label>
+                        <textarea [(ngModel)]="authUser.lookingFor" class="form-control" name="lookingFor" id="lookingFor" cols="30" rows="6"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="interests">Interests</label>
+                        <textarea [(ngModel)]="authUser.interests" class="form-control" name="interests" id="interests" cols="30" rows="6"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Location Details</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="city">City</label>
+                                <input type="text" [(ngModel)]="authUser.city" class="form-control" name="city" id="city">
+                            </div>
+                            <div class="col">
+                                <label for="country">Country</label>
+                                <input type="text" [(ngModel)]="authUser.country" class="form-control" name="country" id="country">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <tab heading="Edit Photos" class="py-3">
+                <app-photo-editor [member]="authUser"></app-photo-editor>
+            </tab>
+        </tabset>
+    </div>
+</div>

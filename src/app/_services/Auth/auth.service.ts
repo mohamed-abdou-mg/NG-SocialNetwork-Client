@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { LoginModel } from 'src/app/_models/Authentication/login.model';
 import { RegisterModel } from 'src/app/_models/Authentication/register.model';
 import { AuthResponse } from 'src/app/_models/Authentication/Responses/auth-response.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
 
   private currentUserSource = new ReplaySubject<AuthResponse>(1);
   currentUser$ = this.currentUserSource.asObservable();
-  baseUrl: string = "https://localhost:44388/api/";
+  baseUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
