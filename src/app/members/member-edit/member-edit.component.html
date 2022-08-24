@@ -7,8 +7,8 @@
                 <p><strong>Gender: </strong> {{ authUser.gender }}</p>
                 <p><strong>Location: </strong> {{ authUser.city }}, {{ authUser.country }}</p>
                 <p><strong>Age: </strong>{{ authUser.age }} years</p>
-                <p><strong>Last Active: </strong> {{ authUser.lastActive }}</p>
-                <p><strong>Member since: </strong> {{ authUser.created }}</p>
+                <p><strong>Last Active: </strong> {{ authUser.lastActive | date }}</p>
+                <p><strong>Member since: </strong> {{ authUser.created | date }}</p>
                 <button form="editForm" [disabled]="!editForm.dirty" type="submit" class="btn btn-success btn-block">Save Changes</button>
             </div>
           </div>

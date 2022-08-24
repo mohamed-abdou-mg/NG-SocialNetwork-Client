@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,9 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerLoadingInterceptor } from './_interceptors/spinner-loading.interceptor';
 import { PhotoEditorComponent } from './members/member-edit/photo-editor/photo-editor.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { PhotoEditorComponent } from './members/member-edit/photo-editor/photo-e
     ServerErrorComponent,
     MemberCardComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +51,12 @@ import { PhotoEditorComponent } from './members/member-edit/photo-editor/photo-e
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
