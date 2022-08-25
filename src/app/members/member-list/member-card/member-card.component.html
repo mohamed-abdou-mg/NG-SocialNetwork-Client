@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-primary btn-block mb-2" [routerLink]="['/members/' + member.username]" style="display: block;"><i class="fa fa-user"></i></button>
-                        <button class="btn btn-success btn-block mb-2" style="display: block;"><i class="fa fa-thumbs-up"></i></button>
+                        <button class="btn btn-success btn-block mb-2" (click)="addLike(member)" style="display: block;"><i class="fa fa-thumbs-up"></i></button>
                         <button class="btn btn-info btn-block" style="display: block;"><i class="fa fa-envelope"></i></button>
                     </div>
                 </div>
